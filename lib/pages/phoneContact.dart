@@ -1,4 +1,6 @@
+import 'package:ch4_starter_exercise/pages/addNewContact.dart';
 import 'package:flutter/material.dart';
+import 'package:ch4_starter_exercise/pages/addNewContact.dart';
 
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -17,10 +19,15 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         tooltip: 'Navigation menu',
         onPressed: null,
       ),
-      actions: const [
+      actions: [
         IconButton(
           icon: Icon(Icons.add),
-          onPressed: null,
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddNewContactScreen())
+            );
+          },
         ),
         IconButton(
           icon: Icon(Icons.search),
@@ -58,7 +65,6 @@ class PhoneBookApp extends StatelessWidget {
     );
   }
 }
-
 class PhoneBookScreen extends StatelessWidget {
   final List<Contact> contacts = [
     Contact(name: 'John Doe', phoneNumber: '1234567890', address: '123 Main St'),
@@ -68,6 +74,7 @@ class PhoneBookScreen extends StatelessWidget {
     Contact(name: 'Jane Smith3', phoneNumber: '0987654321', address: '456 Park Ave'),
     Contact(name: 'Jane Smith4', phoneNumber: '0987654321', address: '456 Park Ave'),
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +107,10 @@ class PhoneBookScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
 
 class Contact {
   final String name;
