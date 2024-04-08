@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
 
@@ -116,9 +117,7 @@ class ContactDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(contact.name),
-      ),
+      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
