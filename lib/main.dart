@@ -1,21 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ch4_starter_exercise/pages/home.dart';
-import 'package:flutter/widgets.dart';
 
 void main(){
   //runApp(MyApp());
-
   runApp(
-       MaterialApp(
+       const MaterialApp(
         title: 'My app',
         home: SafeArea(
             child: Scaffold(
-              body: Container(
-                child: MyScaffold(),
-              ),
+              body: MyScaffold(),
             ),
-
         ),
 
     debugShowCheckedModeBanner: false,
@@ -24,8 +18,9 @@ void main(){
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
   final Widget title;
-  const MyAppBar({required this.title, Key? key}) : super(key: key);
+  const MyAppBar({required this.title, super.key});
 
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 56,
@@ -43,80 +38,30 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
               child: title,
           ),
           const IconButton(
+              onPressed: null,
+              icon: Icon(Icons.add)
+          ),
+          const IconButton(
             icon: Icon(Icons.search),
             tooltip: 'Search',
             onPressed: null,
+          ),
+          const IconButton(
+              onPressed: null,
+              icon: Icon(Icons.more_vert)
           )
         ],
       ),
+    );
+    Container(
+
     );
   }
 
   @override
   // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-
 }
-
-// class MyScaffold extends StatelessWidget {
-//   static const descTextStyle = TextStyle(
-//     color: Colors.blue,
-//     fontFamily: 'Roboto',
-//     letterSpacing: 0.5,
-//     fontSize: 18,
-//     height: 2,
-//   );
-//
-//   const MyScaffold({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final iconList = DefaultTextStyle.merge(
-//       style: descTextStyle,
-//       child: Container(
-//         padding: const EdgeInsets.all(20),
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//           children: [
-//             Column(
-//               children: [
-//                 Icon(Icons.phone, color: Colors.blue[500]),
-//                 Container(
-//                   child: const Text('Phone'),
-//                 ),
-//               ],
-//             ),
-//             Column(
-//               children: [
-//                 Icon(Icons.route_sharp, color: Colors.blue[500]),
-//                 Container(
-//                   child: const Text('Route'),
-//                 ),
-//               ],
-//             ),
-//             Column(
-//               children: [
-//                 Icon(Icons.share, color: Colors.blue[500]),
-//                 Container(
-//                   child: const Text('Share'),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//
-//     return Scaffold(
-//       appBar: const MyAppBar(
-//         title: Text('My App'),
-//       ),
-//       body: iconList,
-//
-//     );
-//   }
-// }
 
 class MyScaffold extends StatelessWidget {
   static const descTextStyle = TextStyle(
@@ -139,7 +84,7 @@ class MyScaffold extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end, // Di chuyển xuống cuối
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Column(
                   children: [
@@ -151,9 +96,9 @@ class MyScaffold extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    Icon(Icons.route_sharp, color: Colors.blue[500]),
+                    Icon(Icons.contact_emergency, color: Colors.blue[500]),
                     Container(
-                      child: const Text('Route'),
+                      child: const Text('Contact'),
                     ),
                   ],
                 ),
@@ -172,32 +117,97 @@ class MyScaffold extends StatelessWidget {
       ),
     );
 
+    final contact = DefaultTextStyle.merge(
+        style: descTextStyle,
+        child: Container(
+          padding: const EdgeInsets.all(20),
+
+        ),
+    );
+
     return Scaffold(
       appBar: const MyAppBar(
-        title: Text('My App Title'),
+        title: Text('Contact'),
       ),
-      body: Expanded( // Sử dụng Expanded để giữ phần child Row ở dưới cùng
-        child: iconList,
-      ),
-    );
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+          const Center(
+              // child: MyWidget2(false)
+          ),
+          // Expanded( // Sử dụng Expanded để giữ phần child Row ở dưới cùng
+          //   child: iconList,
+          // ),
+        ],
+        ),
+      );
+
   }
 }
 
+class MyWidget extends StatelessWidget{
+  final bool loading;
 
-//
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Starter Template',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: Home(),
-//     );
-//   }
-// }
+
+  MyWidget(this.loading);
+
+  @override
+  Widget build(BuildContext context) {
+    if(loading){
+      return const CircularProgressIndicator();
+    }else{
+      return const Text("Hello");
+    }
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+  
+}
+
+class MyWidget2 extends StatefulWidget{
+  final bool loading;
+
+  MyWidget2(this.loading);
+
+  @override
+  State<StatefulWidget> createState() {
+
+    return MyWidget2State();
+  }
+}
+
+class MyWidget2State extends State<MyWidget2>{
+
+  late bool _localLoading;
+
+  void initState(){
+    _localLoading = widget.loading;
+  }
+  @override
+  Widget build(BuildContext context) {
+
+    if(_localLoading){
+      return const CircularProgressIndicator();
+    }
+    else
+    {
+      return FloatingActionButton(onPressed: onClickButton);
+    }
+
+
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+
+  void onClickButton(){
+    setState(() {
+      _localLoading = true;
+    });
+
+  }
+
+}
+
+
 
 
