@@ -1,7 +1,3 @@
-// Copyright 2022 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:firebase_ui_auth/firebase_ui_auth.dart'; // new
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';               // new
@@ -13,14 +9,12 @@ import 'home_page.dart';
 
 
 void main() {
-  // Modify from here...
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(ChangeNotifierProvider(
     create: (context) => ApplicationState(),
     builder: ((context, child) => const App()),
   ));
-  // ...to here.
 }
 // Add GoRouter configuration outside the App class
 final _router = GoRouter(
@@ -109,9 +103,9 @@ class App extends StatelessWidget {
       title: 'Firebase Meetup',
       theme: ThemeData(
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
-          highlightColor: Colors.deepPurple,
+          highlightColor: Colors.blue,
         ),
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.blue,
         textTheme: GoogleFonts.robotoTextTheme(
           Theme.of(context).textTheme,
         ),

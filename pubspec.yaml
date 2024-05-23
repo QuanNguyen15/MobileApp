@@ -43,6 +43,7 @@ dependencies:
   cloud_firestore: ^4.17.2
   provider: ^6.1.2
   firebase_ui_auth: ^1.14.0
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.1
+  test: ^1.24.9
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
